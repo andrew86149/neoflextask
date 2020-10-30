@@ -11,6 +11,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
@@ -19,6 +20,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "AUTHOR_BOOKS")
 @IdClass(value = AuthorBooksPK.class)
+@XmlRootElement
 public class AuthorBooks implements Serializable {
     @Id
     @Column(name = "AUTHOR_ID")

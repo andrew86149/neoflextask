@@ -19,6 +19,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
@@ -30,6 +31,7 @@ import javax.validation.constraints.Size;
     @NamedQuery(name = "findAllAuthors", query = "SELECT e FROM Author e"),
     @NamedQuery(name = "findByAuthorId", query = "SELECT e FROM Author e WHERE e.authorId = :authorId"),
     @NamedQuery(name = "findByName", query = "SELECT e FROM Author e WHERE e.lastName = :name")})
+@XmlRootElement
 public class Author implements Serializable {
     @Id
     @Basic(optional = false)
