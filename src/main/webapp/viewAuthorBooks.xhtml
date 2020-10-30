@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:composition template="layout.xhtml">
+        <ui:define name="title">View the AuthorBooks</ui:define>
+        <ui:define name="content">
+            <h:form id="queryForm">
+                <h:panelGrid columns="3">
+                    <h:outputLabel value="Все данные по книгам : "/>
+                    <h:panelGroup>
+                        <h:commandButton  value="Run query" action="#{authorBooksController.doQuery()}">
+                            <f:ajax execute="@form" render=":querylist :errors"/>
+                        </h:commandButton>
+                    </h:panelGroup>
+                    <h:selectBooleanCheckbox value="#{authorBooksController.cbx1}"/>
+                    <h:outputLabel value="Все книги с автором Smith или Servantes : "/>
+                    <h:inputText value="#{authorBooksController.sp}"/>
+                    <h:selectBooleanCheckbox value="#{authorBooksController.cbx2}"/>
+                    <h:outputLabel value="Все книги с названием tter : "/>
+                    <h:inputText value="#{authorBooksController.title}"/>
+                    <h:selectBooleanCheckbox value="#{authorBooksController.cbx3}"/>
+                    <h:outputLabel value="Год издания с 2000 до 2010 : "/>
+                    <h:inputText value="#{authorBooksController.publishEnd}"/>
+                    <h:selectBooleanCheckbox value="#{authorBooksController.cbx4}"/>
+                    <h:outputLabel value="Год издания до 2000 : "/>
+                    <h:inputText value="#{authorBooksController.publish}"/>
+                    <h:selectBooleanCheckbox value="#{authorBooksController.cbx5}"/>
+                </h:panelGrid>
+            </h:form>
+            <h1>List of AuthorBooks</h1>
+            
+            <h:dataTable id="querylist" value="#{authorBooksController.abList}" var="bk" border="1">
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Author ID"/>
+                    </f:facet>
+                    <h:outputText value="#{bk.authorId}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Book ID"/>
+                    </f:facet>
+                    <h:outputText value="#{bk.bookId}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Author"/>
+                    </f:facet>
+                    <h:outputText value="#{bk.authorName}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Title"/>
+                    </f:facet>
+                    <h:outputText value="#{bk.bookTitle}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Publishing"/>
+                    </f:facet>
+                    <h:outputText value="#{bk.bookPublishing}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Info"/>
+                    </f:facet>
+                    <h:outputText value="#{authorBooksController.opt}"/>
+                </h:column>
+            </h:dataTable>
+        </ui:define>
+    </ui:composition>
+</html>
+
